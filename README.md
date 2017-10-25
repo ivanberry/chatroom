@@ -3,7 +3,7 @@ Learn node in action
 
 ### Todo List
 
-[ ] basic functional real-time chat room
-    [ ] front with basic
-    [ ] refactor with react
-[ ] Integer with Socket In Node
+- [ ] Basic functional real-time chat room
+    - [ ] Front with basic
+    - [ ] Refactor with react
+- [ ] Integer with Socket In Node
