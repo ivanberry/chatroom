@@ -3,6 +3,8 @@ let fs = require("fs");
 let path = require("path");
 let mime = require("mime");
 
+let chatServer = require('./lib/chat_server.js');
+
 var cache = {};
 let cacheOn = false;
 
@@ -55,3 +57,4 @@ SERVER.listen(8080, () => {
     console.log('Server listening on port 8080');
 });
 
+chatServer.listen(SERVER); // socket.io server with same TCP/IP connection as HTTP services
