@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" href="">
     <title>Real-Time with You</title>
     <link rel="stylesheet" href="./stylesheets/index.css">
-    <script src="./javascript/ulti/socket.io.js" defer></script>
-</head>
+    <script src="./javascript/ulti/socket.io.js"></script>
+  </head>
 
-<body class="app-container">
+  <body class="app-container">
     <header class="main-header">Welcome To My Room</header>
     <main class="main-item main-content-container" id="content_wrap">
-        <section class="main-content" id="content">
-            <div class="message-container" id="message_container">
-                <div id="room"></div>
-                <div id="messages"></div>
-            </div>
-            <div class="message-help" id="help">
-                <div id="room_list"></div>
-                <p>Chat commands</p>
-                <ul>
-                    <li>Change nickname:
-                        <code>/nick [username]</code>
-                    </li>
-                    <li>Join/create room:
-                        <code>/join [room name]</code>
-                    </li>
-                </ul>
+    <section class="main-content" id="content">
+      <div class="message-container" id="message_container">
+        <div id="room"></div>
+        <div id="messages"></div>
+      </div>
+      <div class="message-help" id="help">
+        <div id="room_list"></div>
+        <p>Chat commands</p>
+        <ul>
+          <li>Change nickname:
+            <code>/nick [username]</code>
+          </li>
+          <li>Join/create room:
+            <code>/join [room name]</code>
+          </li>
+        </ul>
 
-            </div>
-        </section>
-        <section class="main-submit" >
-            <form id="send_form">
-                <input class="input-content" type="text" id="send_message">
-                <input type="submit"  class="input-submit" id="send_button" value="Send">
-            </form>
+      </div>
+    </section>
+    <section class="main-submit" >
+      <form id="send_form">
+        <input class="input-content" type="text" id="send_message">
+        <input type="submit"  class="input-submit" id="send_button" value="Send">
+      </form>
 
-        </section>
+    </section>
     </main>
-</body>
+    <script>
+      let socket = io();
+    </script>
+
+  </body>
 
 </html>
