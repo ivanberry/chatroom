@@ -4,6 +4,7 @@ let path = require("path");
 let mime = require("mime");
 
 let chatServer = require('./lib/chat_server.js');
+console.log(chatServer);
 
 var cache = {};
 let cacheOn = false;
@@ -40,6 +41,7 @@ function serveStatic(res, cache, absPath) {
   }
 }
 
+// http server
 const SERVER = http.createServer((request, response) => {
     let filePath = false;
 
@@ -53,8 +55,9 @@ const SERVER = http.createServer((request, response) => {
     serveStatic(response, cache, absPath);
 });
 
+//listen on port
 SERVER.listen(8080, () => {
     console.log('Server listening on port 8080');
 });
 
-chatServer.listen(SERVER); // socket.io server with same TCP/IP connection as HTTP services
+chatServer.listen(SERVER); 

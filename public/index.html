@@ -34,7 +34,7 @@
       </div>
     </section>
     <section class="main-submit" >
-      <form id="send_form">
+      <form id="send_form" action="">
         <input class="input-content" type="text" id="send_message">
         <input type="submit"  class="input-submit" id="send_button" value="Send">
       </form>
@@ -43,6 +43,14 @@
     </main>
     <script>
       let socket = io();
+      let form = document.getElementById('send_form');
+      let input = document.getElementById('send_message');
+      form.addEventListener('submit', (e) => {
+        let _value = input.value;
+        e.preventDefault();
+        socket.emit('message', _value);
+        console.log('submit');
+      })
     </script>
 
   </body>
