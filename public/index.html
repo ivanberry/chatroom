@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/png" href="">
-    <title>Real-Time with You</title>
-    <link rel="stylesheet" href="./stylesheets/index.css">
-    <script src="./javascript/ulti/socket.io.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" href="">
+  <title>Real-Time with You</title>
+  <link rel="stylesheet" href="./stylesheets/index.css">
+  <script src="./javascript/ulti/socket.io.js"></script>
+</head>
 
-  <body class="app-container">
-    <header class="main-header">Welcome To My Room</header>
-    <main class="main-item main-content-container" id="content_wrap">
+<body class="app-container">
+  <header class="main-header">Welcome To My Room</header>
+  <main class="main-item main-content-container" id="content_wrap">
     <section class="main-content" id="content">
       <div class="message-container" id="message_container">
         <div id="room"></div>
@@ -33,26 +33,35 @@
 
       </div>
     </section>
-    <section class="main-submit" >
+    <section class="main-submit">
       <form id="send_form" action="">
         <input class="input-content" type="text" id="send_message">
-        <input type="submit"  class="input-submit" id="send_button" value="Send">
+        <input type="submit" class="input-submit" id="send_button" value="Send">
       </form>
 
     </section>
-    </main>
-    <script>
-      let socket = io();
-      let form = document.getElementById('send_form');
-      let input = document.getElementById('send_message');
-      form.addEventListener('submit', (e) => {
-        let _value = input.value;
-        e.preventDefault();
-        socket.emit('message', _value);
-        console.log('submit');
-      })
-    </script>
+  </main>
+  <script>
+    let socket = io();
+    let form = document.getElementById('send_form');
+    let input = document.getElementById('send_message');
+    form.addEventListener('submit', (e) => {
+      let _value = input.value;
+      e.preventDefault();
+    });
+    socket.on('nameResult', (name) => {
+      console.log(name);
+    });
 
-  </body>
+    socket.on('joinRoom', (data) => {
+      console.log(data);
+    })
+
+    socket.on('message', (data) => {
+      console.log(data);
+    })
+  </script>
+
+</body>
 
 </html>
