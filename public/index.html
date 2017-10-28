@@ -8,8 +8,7 @@
   <link rel="icon" type="image/png" href="">
   <title>Real-Time with You</title>
   <link rel="stylesheet" href="./stylesheets/index.css">
-  <script src="./javascript/ulti/socket.io.js"></script>
-  <script type="module" src="./javascript/chat_ui.js"></script>
+  <script src="./src/socket.io.js"></script>
 </head>
 
 <body class="app-container">
@@ -42,27 +41,7 @@
 
     </section>
   </main>
-  <script>
-    let socket = io();
-    let form = document.getElementById('send_form');
-    let input = document.getElementById('send_message');
-    form.addEventListener('submit', (e) => {
-      let _value = input.value;
-      e.preventDefault();
-    });
-    socket.on('nameResult', (name) => {
-      console.log(name);
-    });
-
-    socket.on('joinRoom', (data) => {
-      console.log(data);
-    })
-
-    socket.on('message', (data) => {
-      console.log(data);
-    })
-  </script>
-
+  <script src="./dist/bundle.js"></script>
 </body>
 
 </html>

@@ -22,7 +22,13 @@
   },
   "homepage": "https://github.com/ivanberry/chatroom#readme",
   "dependencies": {
+    "jquery": "^3.2.1",
     "mime": "^2.0.3",
     "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "webpack": "^3.8.1"
   }
 }
