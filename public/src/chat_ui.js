@@ -11,9 +11,9 @@ function divSystemContentElement(message) {
 }
 
 function processUserInput(chatApp, socket) {
-  let message = $("send_message").val();
+  let message = $("#send_message").val();
   let systemMessage = "";
-  if (message.chartAt(0) === "/") {
+  if (message.charAt(0) === "/") {
     systemMessage = chatApp.processCommand(message);
     if (systemMessage) {
       $("#messages").append(divSystemContentElement(systemMessage));
@@ -44,6 +44,7 @@ $(document).ready(function() {
     }
     $('#messages').append(divSystemContentElement(message));
   });
+  
 
   //listen on joinReulst
   //socket.on('joinResult', (result) => {
@@ -52,18 +53,18 @@ $(document).ready(function() {
   //});
 
   //listen on message
-  //socket.on('message', (message) => {
-  //  let newElement = $('<div></div>').text(message.text);
-  //  $('#messages').append(newElement);
-  //});
+  socket.on('message', (message) => {
+    let newElement = $('<div></div>').text(message.text);
+    $('#messages').append(newElement);
+  });
 
-  setInterval(() => {
-    socket.emit('rooms');
-  }, 1000);
+  //setInterval(() => {
+  //  socket.emit('rooms');
+  //}, 4000);
 
   $('#send_form').submit((e) => {
    e.preventDefault();
-  //  processUserInput(chatApp, socket);
+   processUserInput(chatApp, socket);
   })
 
 });
