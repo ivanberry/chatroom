@@ -2,7 +2,7 @@ const path = require("path");
 const ROOT = __dirname;
 
 module.exports = {
-  entry: "./public/src/chat_ui.js",
+  entry: "./public/javascript/chat_ui.js",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "public/dist") ///Users/tab/Documents/Self-Project/chatroom/public/dist

@@ -48,7 +48,7 @@ const SERVER = http.createServer((request, response) => {
     if (request.url === '/') {
         filePath = 'public/index.html';
     } else {
-        filePath = 'public' + request.url
+        filePath = 'public/' + request.url
     }
 
     let absPath = './' + filePath;
