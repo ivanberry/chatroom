@@ -34,6 +34,11 @@ $(document).ready(function() {
 
   const chatApp = new Chat(socket);
 
+  socket.on('joinResult', (result) => {
+    let _room = document.getElementById('room');
+    _room.innerText = result.room;
+  });
+
   // listen on nameResult
   socket.on('nameResult', (result) => {
     let message;

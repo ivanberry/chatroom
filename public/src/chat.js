@@ -24,6 +24,7 @@ export default class Chat {
     switch (_command) {
       case "join":
         words.shift();
+        debugger;
         let room = words.join(" ");
         this.changeRoom(room);
         break;
