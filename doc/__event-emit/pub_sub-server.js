@@ -15,11 +15,19 @@ channel.on("join", function(id, client) {
   this.on("broadcast", this.subscriptions[id]);
 });
 
+channel.on('shutdown', function () {
+  this.emit('broadcast', '', 'Chat has shut down. \n');
+  this.removeAllListeners('broadcast');
+});
+
 let server = net.createServer(client => {
   let id = `${client.remoteAddress} : ${client.remotePort}`;
   channel.emit("join", id, client); //automatically listen 'join' event
   client.on("data", data => {
     data = data.toString();
+    if (data === 'shutdown\r\n') {
+      channel.emit('shutdown');
+    }
     channel.emit("broadcast", id, data);
   });
 });
