@@ -1,0 +1,4 @@
+- [ ] Pulls the titles of recent posts store as JSON async
+- [ ] Pull a basic HTML template
+- [ ] Assembles an HTML page with post title
+- [ ] Sends HTML page to the user
