@@ -6,7 +6,7 @@ channel.clients = {};
 channel.subscriptions = {};
 
 channel.on("join", function(id, client) {
-  this.clients[id] = id;
+  this.clients[id] = client;
   this.subscriptions[id] = function(senderId, message) {
     if (id !== senderId) {
       this.clients[id].write(message);

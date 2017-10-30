@@ -84,6 +84,13 @@ $(document).ready(function() {
     listContainer.appendChild(createList(rooms));
   });
 
+  //allow click to join the room
+  $('#rooms_list').click((e) => {
+    var _room = e.target.textContent;
+    chatApp.processCommand('/join ' + _room);
+    $('#send_button').focus(); //这是厉害啦
+  })
+
   setInterval(() => {
     socket.emit("rooms");
   }, 2000);
