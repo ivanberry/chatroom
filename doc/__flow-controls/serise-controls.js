@@ -20,10 +20,9 @@ function checkForRSSFile() {
 function readRSSFile(configFilename) {
   fs.readFile(configFilename, (err, feedList) => {
     if (err) return next(err);
-    feedList = feedList.toString().replace(/^\s+|\s+$/g, '');
-    // let random = Math.floor(Math.random() * feedList.length);
-    // next(null, feedList[random]);
-    next(null, feedList);
+    feedList = feedList.toString().replace(/^\s+|\s+$/g, '').split('\n');
+    let random = Math.floor(Math.random() * feedList.length);
+    next(null, feedList[random]);
   })
 }
 
