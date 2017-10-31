@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/ivanberry/chatroom#readme",
   "dependencies": {
+    "htmlparser": "^1.7.7",
     "jquery": "^3.2.1",
     "mime": "^2.0.3",
+    "request": "^2.83.0",
     "socket.io": "^2.0.4"
   },
   "devDependencies": {
