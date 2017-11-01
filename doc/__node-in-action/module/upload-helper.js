@@ -18,19 +18,11 @@ function upload(req, res) {
   form.uploadDir = path.resolve(__dirname, "../upload");
   form.keepExtensions = true;
 
-  form.on("field", (field, value) => {
-    console.log(field, value);
-  });
-
-  form.on("file", (name, file) => {
-    console.log(name, file);
-  });
-
-  form.on("end", () => {
-    console.log("Upload completed");
-  });
-
-  form.parse(req); //parse req object
+  form.parse(req, (err, fields, files) => {
+    console.log(fields),
+    console.log(files);
+    res.end('upload completed');
+  }); //parse req object
 }
 
 function isFormData(req) {
