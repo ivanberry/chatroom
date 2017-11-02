@@ -1,10 +1,8 @@
 const http = require("http");
 const work = require("./timetrack");
-const db = require("./db");
+const { db } = require("./db");
 
-console.log(db.db);
-
-db.db.query(
+db.query(
   "CREATE TABLE IF NOT EXISTS work (" +
     "id INT(10) NOT NULL AUTO_INCREMENT, " +
     "hours DECIMAL(5,2) DEFAULT 0, " +
@@ -13,7 +11,7 @@ db.db.query(
     "description LONGTEXT," +
     "PRIMARY KEY(id))",
   err => {
-    server.listen(9003,() => console.log('Server running on localhost:9003'));
+    server.listen(9003, () => console.log("Server running on localhost:9003"));
   }
 );
 
