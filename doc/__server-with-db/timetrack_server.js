@@ -2,18 +2,25 @@ const http = require("http");
 const work = require("./timetrack");
 const { db } = require("./db");
 
-db.query(
-  "CREATE TABLE IF NOT EXISTS work (" +
-    "id INT(10) NOT NULL AUTO_INCREMENT, " +
-    "hours DECIMAL(5,2) DEFAULT 0, " +
-    "date DATE, " +
-    "archived INT(1) DEFAULT 0, " +
-    "description LONGTEXT," +
-    "PRIMARY KEY(id))",
-  err => {
-    server.listen(9003, () => console.log("Server running on localhost:9003"));
-  }
-);
+db
+  .query(
+    `
+    CREATE TABLE IF NOT EXISTS work (
+		id int not null,
+		hours decimal	default 0,
+		date date,
+		archive int default 0,
+		description char(100),
+		primary key (id)
+    )
+    `
+  )
+  .then(() => {
+    server.listen(9003, () => {
+      console.log("Server running on port 9003");
+    });
+  })
+  .catch(err => console.log(err));
 
 const server = http.createServer((req, res) => {
   if (req.method === "POST") {
