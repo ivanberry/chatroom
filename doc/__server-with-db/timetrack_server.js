@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
   } else if (req.method === "GET") {
     switch (req.url) {
       case "/":
-        work.showAdd(db, res);
+        work.show(db, res);
         break;
       case "/archived":
         work.showArchive(db, res);
