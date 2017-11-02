@@ -26,7 +26,10 @@
     "htmlparser": "^1.7.7",
     "jquery": "^3.2.1",
     "mime": "^2.0.3",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
     "request": "^2.83.0",
+    "sequelize": "^4.20.3",
     "socket.io": "^2.0.4"
   },
   "devDependencies": {
