@@ -14,7 +14,14 @@ exports.add = (db, req, res) => {
 };
 
 exports.archive = (db, req, res) => {
-  console.log("archive");
+  parseReceiveData(req, work => {
+    db
+      .query(`UPDATE work SET archived=1 WHERE id=${work.id};`)
+      .then(this.show(db, res, true))
+      .catch(err => {
+        throw err;
+      });
+  });
 };
 
 exports.delete = (db, req, res) => {
