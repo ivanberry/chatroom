@@ -1,12 +1,11 @@
 const qs = require("querystring");
 
 exports.add = (db, req, res) => {
-  debugger;
   this.parseReceiveData(req, work => {
     db
       .query(
         `INSERT INTO work (hours, date, description)
-            VALUES (${work.hours}, ${work.date}, ${work.description})
+            VALUES (${work.hours}, ${work.date}, '${work.description}')
             `
       )
       .then(this.show(db, res))
@@ -25,16 +24,20 @@ exports.delete = (db, req, res) => {
 };
 
 exports.show = (db, res, showArchived) => {
+  let archived = showArchived ? 1 : 0;
   let query = `SELECT * FROM work
-                 WHERE archived=${showArchived ? 0 : 1}
+                 WHERE archived=${archived}
                  ORDER BY date DESC`;
   db
     .query(query)
     .then(rows => {
-      html = showArchived ? "" : `<a href="/archived">Archived Work</a><br>`;
-      rows.map(row => {
+      let _rows = rows.rows;
+      html = showArchived ? "" : '<a href="/archived">Archived Work</a><br>';
+      _rows.map(row => {
         html += buildList(row);
       });
+
+      this.sendHtml(res, html);
     })
     .catch(err => {
       throw err;
@@ -42,7 +45,7 @@ exports.show = (db, res, showArchived) => {
 };
 
 function buildList(row) {
-  return `<li>${row.date}: ${row.hours} ${row.description}`;
+  return `<li>${row.date}: ${row.hours} ${row.description}</li>`;
 }
 
 exports.showArchive = (db, res) => {

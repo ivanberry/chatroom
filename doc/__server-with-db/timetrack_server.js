@@ -6,12 +6,11 @@ db
   .query(
     `
     CREATE TABLE IF NOT EXISTS work (
-		id int not null,
-		hours decimal	default 0,
-		date date,
-		archive int default 0,
-		description char(100),
-		primary key (id)
+        id SERIAL primary key, 
+        hours decimal default 0, 
+        date int, 
+        archived int default 0, 
+        description char(100)
     )
     `
   )
