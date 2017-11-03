@@ -1,6 +1,7 @@
 const http = require("http");
 const work = require("./timetrack");
 const { db } = require("./db");
+const { showIndex } = require("./static");
 
 db
   .query(
@@ -36,7 +37,8 @@ const server = http.createServer((req, res) => {
   } else if (req.method === "GET") {
     switch (req.url) {
       case "/":
-        work.show(db, res);
+        // work.show(db, res);
+        showIndex('./index.html', res);
         break;
       case "/archived":
         work.showArchive(db, res);

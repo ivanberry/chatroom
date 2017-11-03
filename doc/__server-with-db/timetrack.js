@@ -44,7 +44,7 @@ exports.show = (db, res, showArchived) => {
     .query(query)
     .then(rows => {
       let _rows = rows.rows,
-        html = showArchived ? "" : '<a href="/archived">Archived Work</a><br>';
+        html = showArchived ? '<a href="/">Work To do</a>' : '<a href="/archived">Archived Work</a><br>';
       _rows.map(row => {
         html += buildList(row);
       });
