@@ -2,12 +2,10 @@ const qs = require("querystring");
 
 exports.add = (db, req, res) => {
   this.parseReceiveData(req, work => {
+      let _date = work.date ? work.date : new Date().toISOString();
+      let query = `INSERT INTO work (date, description) VALUES ('${_date}', '${work.description}');`;
     db
-      .query(
-        `INSERT INTO work (hours, date, description)
-            VALUES (${work.hours}, ${work.date}, '${work.description}')
-            `
-      )
+      .query(query)
       .then(this.show(db, res))
       .catch(err => {
         throw err;
@@ -27,7 +25,7 @@ exports.show = (db, res, showArchived) => {
   let archived = showArchived ? 1 : 0;
   let query = `SELECT * FROM work
                  WHERE archived=${archived}
-                 ORDER BY date DESC`;
+                 ORDER BY date DESC;`;
   db
     .query(query)
     .then(rows => {
@@ -45,7 +43,7 @@ exports.show = (db, res, showArchived) => {
 };
 
 function buildList(row) {
-  return `<li>${row.date}: ${row.hours} ${row.description}</li>`;
+  return `<li>${row.date} -- ${row.description}</li>`;
 }
 
 exports.showArchive = (db, res) => {

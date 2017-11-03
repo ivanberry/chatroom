@@ -7,8 +7,7 @@ db
     `
     CREATE TABLE IF NOT EXISTS work (
         id SERIAL primary key, 
-        hours decimal default 0, 
-        date int, 
+        date TIMESTAMP, 
         archived int default 0, 
         description char(100)
     )
