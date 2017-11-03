@@ -1,9 +1,9 @@
 const qs = require("querystring");
 
 exports.add = (db, req, res) => {
-  this.parseReceiveData(req, work => {
-      let _date = work.date ? work.date : new Date().toISOString();
-      let query = `INSERT INTO work (date, description) VALUES ('${_date}', '${work.description}');`;
+  parseReceiveData(req, work => {
+    let _date = work.date ? work.date : new Date().toISOString();
+    let query = `INSERT INTO work (date, description) VALUES ('${_date}', '${work.description}');`;
     db
       .query(query)
       .then(this.show(db, res))
@@ -18,7 +18,14 @@ exports.archive = (db, req, res) => {
 };
 
 exports.delete = (db, req, res) => {
-  console.log("delete");
+  parseReceiveData(req, work => {
+    db
+      .query(`DELETE FROM work WHERE id=${work.id};`)
+      .then(this.show(db, res))
+      .catch(err => {
+        throw err;
+      });
+  });
 };
 
 exports.show = (db, res, showArchived) => {
@@ -29,13 +36,12 @@ exports.show = (db, res, showArchived) => {
   db
     .query(query)
     .then(rows => {
-      let _rows = rows.rows;
-      html = showArchived ? "" : '<a href="/archived">Archived Work</a><br>';
+      let _rows = rows.rows,
+        html = showArchived ? "" : '<a href="/archived">Archived Work</a><br>';
       _rows.map(row => {
         html += buildList(row);
       });
-
-      this.sendHtml(res, html);
+      sendHtml(res, html);
     })
     .catch(err => {
       throw err;
@@ -50,13 +56,13 @@ exports.showArchive = (db, res) => {
   console.log("show archive");
 };
 
-exports.sendHtml = (res, html) => {
+function sendHtml(res, html) {
   res.setHeader("Content-Type", "text/html");
   res.setHeader("Content-Length", Buffer.byteLength(html));
   res.end(html);
-};
+}
 
-exports.parseReceiveData = (req, cb) => {
+function parseReceiveData(req, cb) {
   let body = "";
   req.setEncoding("utf-8");
   req.on("data", chunk => {
@@ -66,7 +72,7 @@ exports.parseReceiveData = (req, cb) => {
     let data = qs.parse(body);
     cb(data);
   });
-};
+}
 
 exports.actionForm = (id, path, label) => {
   let html = `<form method="POST" action="${path}" >
