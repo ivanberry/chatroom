@@ -60,7 +60,7 @@ function buildList(row) {
 }
 
 exports.showArchive = (db, res) => {
-  console.log("show archive");
+    this.show(db, res, true);
 };
 
 function sendHtml(res, html) {
