@@ -1,13 +1,9 @@
-const connect = require("connect");
-const app = connect();
-const router = require("./middleware/router");
-
 const routes = {
   GET: {
     "/users": (req, res) => {
       res.end("tobi, loi, ferret");
     },
-    "/user/:id": (req, res, id) => {
+    "/user/:id": (req, res) => {
       res.end("user " + id);
     }
   },
@@ -18,7 +14,4 @@ const routes = {
   }
 };
 
-app
-  .use(router(routes))
-  .listen(9006, () => console.log("Server listen on 9006"));
-
+exports.default = routes;
