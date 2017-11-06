@@ -1,10 +1,10 @@
 ### TODO
-- [ ] Setting up a Connect application
-- [ ] How Connect middleware works
-- [ ] Why middleware ordering matters
-- [ ] Mounting middleware and servers
-- [ ] Creating configurable middleaware
-- [ ] Using error-handling middleware
+- [x] Setting up a Connect application
+- [x] How Connect middleware works
+- [x] Why middleware ordering matters
+- [x] Mounting middleware and servers
+- [x] Creating configurable middleaware
+- [x] Using error-handling middleware
 
 ### Basic about Connect
 In Connect, a middleware component is a function that intercepts the request and response objects provided by the HTTP server, execute logic, and then either ends the response or passed it to the next middleware component. Connect 'connects' the middlewares together using what's called the `dispatcher`.
