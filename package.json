@@ -23,6 +23,7 @@
   "homepage": "https://github.com/ivanberry/chatroom#readme",
   "dependencies": {
     "connect": "^3.6.5",
+    "cookie-parser": "^1.4.3",
     "formidable": "^1.1.1",
     "htmlparser": "^1.7.7",
     "jquery": "^3.2.1",
