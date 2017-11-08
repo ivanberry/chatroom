@@ -13,3 +13,5 @@ In Connect, a middleware component is a function that intercepts the request and
 
 ### How Connect middleware works
 In Connect, a middleware component is a JavaScript function that by convention accepts three arguments: a request object, a response object, and an argument commonly named `next`, which is a callback function indicating that the component is done and the next middleware component can be executed.
+
+### Session Handle 
