@@ -14,7 +14,10 @@ photos.push({
 });
 
 router.get('/', function (req, res, next) {
-  res.end('Welcome to my photos');
+  res.render('photos',{
+      title: 'photos',
+      photos: photos
+  });
 });
 
 module.exports = router;
