@@ -31,7 +31,7 @@
     "htmlparser": "^1.7.7",
     "jquery": "^3.2.1",
     "mime": "^2.0.3",
-    "mongoose": "^4.13.0",
+    "mongoose": "^4.13.1",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
     "redis": "^2.8.0",
