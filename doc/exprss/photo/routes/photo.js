@@ -40,24 +40,20 @@ exports.form = (req, res) => {
 
 exports.submit = dir => {
   return function(req, res, next) {
-    let img = req.files.photo.image;
-    let name = req.body.photo.name || image.name;
-    let path = join(dir, img.name);
+    let file = req.file;
+    let nameWithExt = `${file.filename}.${file.mimetype.split('/')[1]}`
+    let path = req.file.path;
 
-    fs.rename(img.path, path, err => {
-      if (err) return next(err);
-
-      Photo.create(
-        {
-          name: name,
-          path: img.name
-        },
-        err => {
-          if (err) return next(err);
-          res.redirect("/");
-        }
-      );
-    });
+    Photo.create(
+      {
+        name: nameWithExt,
+        path: path
+      },
+      err => {
+        if (err) return next(err);
+        res.redirect("/");
+      }
+    );
   };
 };
 
