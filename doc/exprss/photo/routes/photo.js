@@ -1,29 +1,7 @@
-const express = require("express");
-const router = express.Router();
-
 const Photo = require("../models/Photo");
 const path = require("path");
 const fs = require("fs");
 const join = path.join;
-
-let photos = [];
-photos.push({
-  name: "Node.js Logo",
-
-  path: "http://nodejs.org/images/logos/nodejs-green.png"
-});
-
-photos.push({
-  name: "Ryan Speaking",
-  path: "http://nodejs.org/images/ryan-speaker.jpg"
-});
-
-router.get("/", function(req, res, next) {
-  res.render("photos", {
-    title: "photos",
-    photos: photos
-  });
-});
 
 /**
  * handle post request
@@ -38,22 +16,38 @@ exports.form = (req, res) => {
   });
 };
 
+exports.list = (req, res, next) => {
+  Photo.find({}, (err, photos) => {
+    if (err) return next(err);
+    res.render("photos", {
+      title: "Uploaded photos",
+      photos: photos
+    });
+  });
+};
+
 exports.submit = dir => {
   return function(req, res, next) {
     let file = req.file;
-    let nameWithExt = `${file.filename}.${file.mimetype.split('/')[1]}`
-    let path = req.file.path;
+    let name = req.body.name;
+    let nameWithExt = `${file.filename}.${file.mimetype.split("/")[1]}`;
+    let path = file.path;
+    let destination = file.destination;
 
-    Photo.create(
-      {
-        name: nameWithExt,
-        path: path
-      },
-      err => {
-        if (err) return next(err);
-        res.redirect("/");
-      }
-    );
+    fs.rename(path, destination + '/' + nameWithExt, err => {
+      if (err) return next(err);
+
+      Photo.create(
+        {
+          name: name,
+          fileName: nameWithExt
+        },
+        err => {
+          if (err) return next(err);
+          res.redirect("/showUpload");
+        }
+      );
+    });
   };
 };
 

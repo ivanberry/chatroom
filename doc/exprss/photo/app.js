@@ -33,6 +33,7 @@ app.use('/users', users);
 
 app.get('/upload', photos.form);
 app.post('/upload', upload.single('photo'), photos.submit(app.get(photos)));
+app.get('/showUpload', photos.list);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
