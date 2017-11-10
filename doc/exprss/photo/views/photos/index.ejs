@@ -11,10 +11,8 @@
   <div id="photos">
     <% photos.forEach(function(photo) { %> 
         <div class="photo">
-          <h2>
-            <%=photo.name%>
-          </h2>
-          <img src='/images/<%=photo.fileName%>' />
+            <h2><%=photo.name%></h2>
+          <img src='/images/<%=photo.fileName%>' alt='<%= photo.name %>' />
         </div>
     <% }) %>
   </div>
