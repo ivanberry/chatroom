@@ -5,27 +5,30 @@ const db = redis.createClient();
 
 class User {
 	constructor(obj) {
-		let { id, pass, name, age } = obj;
-		this.name = name;
-		this.id = id;
-		this.pass = pass;
-		this.age = age;
+		if (obj) {
+			let { pass, name, age } = obj;
+			this.name = name;
+			this.pass = pass;
+			this.age = age;
+		}
 	}
 
 	static getByName(name, fn) {
+		//how about the user don't exsit?
 		User.getId(name, (err, id) => {
 			if (err) return fn(err);
 			User.get(id, fn);
 		});
 	}
 
-	static getId(name, id) {
+	static getId(name, fn) {
 		db.get(`user:id:${name}`, fn);
 	}
 
 	static get(id, fn) {
 		db.hgetall(`user:${id}`, (err, user) => {
 			if (err) return fn(err);
+			//if the user is not exits?
 			fn(null, new User(user));
 		});
 	}
