@@ -5,14 +5,14 @@ const db = redis.createClient();
 
 class User {
 	constructor(obj) {
-		let { id, pass, name, age} = obj;
+		let { id, pass, name, age } = obj;
 		this.name = name;
-    this.id = id;
+		this.id = id;
 		this.pass = pass;
 		this.age = age;
 	}
 
-	static getByName (name, fn) {
+	static getByName(name, fn) {
 		User.getId(name, (err, id) => {
 			if (err) return fn(err);
 			User.get(id, fn);
@@ -30,7 +30,7 @@ class User {
 		});
 	}
 
-	static authenticate  (name, pass, fn) {
+	static authenticate(name, pass, fn) {
 		User.getByName(name, (err, user) => {
 			if (err) return fn(err);
 			if (!user.id) return fn();
@@ -38,8 +38,8 @@ class User {
 				if (err) return fn(err);
 				if (hash === user.pass) return fn(null, user);
 				fn();
-			})
-		})
+			});
+		});
 	}
 
 	save(fn) {
