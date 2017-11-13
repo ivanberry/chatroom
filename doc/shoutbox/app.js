@@ -4,6 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var message = require('./lib/message');
 
 const options = {
 	secret: 'user info'
@@ -12,6 +13,7 @@ const options = {
 var index = require('./routes/index');
 var users = require('./routes/users');
 var register = require('./routes/register');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -23,6 +25,7 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(session(options));
+app.use(message);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -31,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/register', register);
+app.use('/login', login.form);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
