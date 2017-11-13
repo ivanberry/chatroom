@@ -21,7 +21,7 @@ router.post('/', (req, res, next) => {
 		if (err) return next(err);
 
 		if (user.id) {
-			res.error('Username already taken');
+			// res.error('Username already taken');
 			res.redirect('back');
 		} else {
 			user = new User({

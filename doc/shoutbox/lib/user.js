@@ -6,10 +6,12 @@ const db = redis.createClient();
 class User {
 	constructor(obj) {
 		if (obj) {
-			let { pass, name, age } = obj;
+			let { pass, name, age, id, salt } = obj;
 			this.name = name;
 			this.pass = pass;
 			this.age = age;
+			this.id = id;
+			this.salt = salt;
 		}
 	}
 
