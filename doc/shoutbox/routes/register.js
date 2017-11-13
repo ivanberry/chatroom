@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res, next) => {
 	let username = req.body.username;
 	let pass = req.body.password;
+	let age = req.body.age;
 
 	User.getByName(username, (err, user) => {
 		if (err) return next(err);
@@ -27,7 +28,7 @@ router.post('/', (req, res, next) => {
 			user = new User({
 				name: username,
         pass: pass,
-        age: 1
+        age: age
 			});
 
 			user.save(err => {
