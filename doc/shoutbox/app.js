@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var message = require('./lib/message');
 var user = require('./lib/module/user');
+var entry = require('./routes/entry');
+var post = require('./routes/post');
 
 const options = {
 	secret: 'Amy'
@@ -36,6 +38,8 @@ app.use('/', index);
 app.use('/register', register);
 app.get('/login', login.form);
 app.post('/login', login.login);
+app.get('/entry', entry.list);
+app.get('/post', post.get);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
