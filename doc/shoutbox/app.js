@@ -8,6 +8,7 @@ var message = require('./lib/message');
 var user = require('./lib/module/user');
 var entry = require('./routes/entry');
 var post = require('./routes/post');
+var validate = require('./lib/validate');
 
 const options = {
 	secret: 'Amy'
@@ -40,6 +41,7 @@ app.get('/login', login.form);
 app.post('/login', login.login);
 app.get('/entry', entry.list);
 app.get('/post', post.get);
+// app.post('/post', validate.required, validate.lengthAbove(4), post.post);
 app.post('/post', post.post);
 
 // catch 404 and forward to error handler
