@@ -42,6 +42,7 @@ app.use('/', index);
 app.use('/register', register);
 app.get('/login', login.form);
 app.post('/login', login.login);
+app.get('/logout', login.logout);
 app.get('/post', post.get);
 // app.post('/post', validate.required('title'), validate.lengthAbove('body',4), post.post);
 app.post('/post',  post.post);

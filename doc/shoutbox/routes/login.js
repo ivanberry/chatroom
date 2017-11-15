@@ -28,6 +28,9 @@ exports.login = (req, res, next) => {
   });
 };
 
-// exports.logout = (req, res) => {
-
-// };
+exports.logout = (req, res) => {
+  req.session.destroy(err => {
+    if (err) throw new Error(err);
+    res.redirect('/');
+  });
+};
