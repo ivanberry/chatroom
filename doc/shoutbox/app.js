@@ -41,8 +41,8 @@ app.get('/login', login.form);
 app.post('/login', login.login);
 app.get('/entry', entry.list);
 app.get('/post', post.get);
-// app.post('/post', validate.required, validate.lengthAbove(4), post.post);
-app.post('/post', post.post);
+// app.post('/post', validate.required('title'), validate.lengthAbove('body',4), post.post);
+// app.post('/post', post.post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

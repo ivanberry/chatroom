@@ -1,8 +1,8 @@
 function parseField(field) {
-	return field.split(/\[|\]/).filter(s => s);
+	return field;
 }
 
-function getField(req, field) {
+function getFieldVal(req, field) {
 	let val = req.body;
 	field.forEach(prop => {
 		val = val[prop];
@@ -13,7 +13,7 @@ function getField(req, field) {
 exports.required = field => {
 	field = parseField(field);
 	return function(req, res, next) {
-		if (getField(req, field)) {
+		if (getFieldVal(req, field)) {
 			next();
 		} else {
 			res.redirect('back');
@@ -24,7 +24,7 @@ exports.required = field => {
 exports.lengthAbove = (field, len) => {
   field = parseField(field);
   return function (req, res, next) {
-    if (getField(req, field).length > len) {
+    if (getFieldVal(req, field).length > len) {
       next();
     } else {
       res.redirect('back');
