@@ -1,7 +1,8 @@
 const Entry = require('../lib/entry');
 
 exports.list = (req, res, next) => {
-	Entry.getRange(0, -1, (err, entries) => {
+	let page = req.page;
+	Entry.getRange(page.from, page.to, (err, entries) => {
 		if (err) throw next(err);
 
 		res.render('entries', {

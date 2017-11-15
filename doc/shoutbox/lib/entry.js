@@ -4,16 +4,20 @@ const db = redis.createClient();
 class Entry {
 	constructor(obj) {
 		Object.assign(this, obj);
-    }
-    
-    static getRange(from, to, fn) {
-        db.lrange('entries', from, to, (err, items) => {
-            if (err) return fn(err);
-            let entries = [];
-            entries = items.map(item => JSON.parse(item));
-            fn(null, entries);
-        });
-    }
+	}
+
+	static getRange(from, to, fn) {
+		db.lrange('entries', from, to, (err, items) => {
+			if (err) return fn(err);
+			let entries = [];
+			entries = items.map(item => JSON.parse(item));
+			fn(null, entries);
+		});
+	}
+
+	static count(fn) {
+		db.llen('entries', fn);
+	}
 
 	save(fn) {
 		let entryJSON = JSON.stringify(this);

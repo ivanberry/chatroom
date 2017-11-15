@@ -9,7 +9,7 @@ exports.get = (req, res) => {
 exports.post = (req, res, next) => {
     let data = req.body;
     let entry = new Entry({
-        'username': res.locals.username,
+        'username': res.locals.user.name,
         'title': data.title,
         'body': data.body
     });

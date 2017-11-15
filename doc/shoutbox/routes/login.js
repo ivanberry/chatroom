@@ -20,8 +20,7 @@ exports.login = (req, res, next) => {
     if (err) throw next(err);
     if (user) {
       req.session.uid = user.id;
-      res.end(`Hello ${user.name}`);
-      // res.redirect('/');
+      res.redirect('/');
     } else {
       // res.error('Sorry! invalid credentias');
       res.redirect('back');
@@ -29,6 +28,6 @@ exports.login = (req, res, next) => {
   });
 };
 
-exports.logout = (req, res) => {
+// exports.logout = (req, res) => {
 
-};
+// };
