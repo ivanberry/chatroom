@@ -49,6 +49,7 @@ app.get('/post', post.get);
 app.post('/post',  post.post);
 app.get('/entry', page(Entry.count, 2), entry.list);
 app.get('/api/user/:id', api.user);
+app.get('/api/entry/:page?', page(Entry.count, 2), api.entry);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
