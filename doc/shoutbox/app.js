@@ -39,7 +39,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', index);
 app.use('/register', register);
 app.get('/login', login.form);
 app.post('/login', login.login);
@@ -47,9 +46,10 @@ app.get('/logout', login.logout);
 app.get('/post', post.get);
 // app.post('/post', validate.required('title'), validate.lengthAbove('body',4), post.post);
 app.post('/post',  post.post);
-app.get('/entry', page(Entry.count, 2), entry.list);
+app.get('/', page(Entry.count, 2), entry.list);
 app.get('/api/user/:id', api.user);
 app.get('/api/entry/:page?', page(Entry.count, 2), api.entry);
+app.use(index.notFound);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -8,3 +8,4 @@ To implement an API, we'll do the following:
 - Add Basic authentication
 - Implement routing
 - Provide JSON and XML responses
+- Where should notFound middleware be placed? after all others?
