@@ -41,7 +41,7 @@ class User {
 			if (!user.id) return fn();
 			bcrypt.hash(pass, user.salt, (err, hash) => {
 				if (err) return fn(err);
-				if (hash === user.pass) return fn(user);
+				if (hash === user.pass) return fn(null, user);
 				fn();
 			});
 		});

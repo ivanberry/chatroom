@@ -5,7 +5,8 @@ const Entry = require('../lib/entry');
 exports.auth = function(req, res, next) {
   let credentials = auth(req);
   if (credentials) {
-    User.authenticate(credentials.name, credentials.pass, user => {
+    User.authenticate(credentials.name, credentials.pass, (err, user) => {
+      if (err) return next(err);
       if (!user) return res.end('404');
       next();
     }); //验证查询客户端是否有查询权限
